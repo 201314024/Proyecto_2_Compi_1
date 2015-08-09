@@ -39,15 +39,16 @@ public class Lista {
         
         }
     }
-    public void Eliminar(Objeto o)
+    public void Eliminar(int a)
     {
         Nodo aux=Inicio;
         Nodo aux2=Inicio;
+        int i=0;
         
         while(aux != null)
         {
             
-            if(aux.next.o==o)
+            if(i+1==a)
             {
                if(aux.next==Fin)
                {
@@ -67,6 +68,7 @@ public class Lista {
             else
             {
                 aux=aux.next;
+                i++;
             }
                  
         
@@ -79,12 +81,6 @@ public class Lista {
         {
             System.out.println(aux.o.nombre);
             aux=aux.next;
-        }
-        aux=Fin;
-        while(aux != null)
-        {
-            System.out.println(aux.o.nombre);
-            aux=aux.back;
         }
         
     }

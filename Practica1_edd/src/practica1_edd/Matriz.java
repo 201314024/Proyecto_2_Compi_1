@@ -20,7 +20,7 @@ public class Matriz {
             this.numCY = 0;
         }
 
-        public void Add(int x, int y, int dimension, Object d)
+        public void Add(int x, int y, int dimension, Objeto d)
         {
             NodoMatriz nuevoNodo = new NodoMatriz(dimension, d, x, y);
             
@@ -284,7 +284,7 @@ public class Matriz {
             this.size++;
         }
 
-        public void Edit(int x, int y, int dimension, Object d)
+        public void Edit(int x, int y, int dimension, Objeto d)
         {
             NodoMatriz elNodo;
             if (numCX >= numCY)
@@ -1116,9 +1116,9 @@ public class Matriz {
         public int x;
         public NodoCabecera cabezaY;
         public int y;
-        public Object dato;
+        public Objeto dato;
 
-        public NodoMatriz(int dim, Object d, int f, int c)
+        public NodoMatriz(int dim, Objeto d, int f, int c)
         {
             this.dato = d;
             this.siguienteH = null;

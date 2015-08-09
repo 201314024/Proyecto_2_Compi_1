@@ -74,6 +74,17 @@ public class Lista {
         
         }
     }
+    public int tamano()
+    {
+        int i=-1;
+        Nodo aux=Inicio;
+        while (aux!=null)
+        {
+            i++;
+            aux=aux.next;
+        }
+        return i;
+    }
     public void mostrar()
     {
         Nodo aux=Inicio;

@@ -1,5 +1,6 @@
 package practica1_edd;
 
+import java.awt.Dimension;
 import java.awt.Rectangle;
 
 public class Menu_Principal extends javax.swing.JFrame {
@@ -94,7 +95,10 @@ public class Menu_Principal extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jScrollPane3 = new javax.swing.JScrollPane();
+        No_elim = new javax.swing.JTextField();
+        Belim = new javax.swing.JButton();
+        Bconfycon = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane(Mostrar);
         Mostrar = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -176,7 +180,7 @@ public class Menu_Principal extends javax.swing.JFrame {
                     .addComponent(jTextField2)
                     .addComponent(jTextField3)
                     .addComponent(jTextField8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 167, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 169, Short.MAX_VALUE)
                 .addGroup(SeleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
@@ -223,37 +227,54 @@ public class Menu_Principal extends javax.swing.JFrame {
                 .addGroup(SeleccionLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton8))
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
 
         jScrollPane1.setViewportView(Seleccion);
+
+        Belim.setText("Eliminar Por numero");
+        Belim.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BelimMouseClicked(evt);
+            }
+        });
+
+        Bconfycon.setText("Confirmar y Continuar");
 
         javax.swing.GroupLayout MostrarLayout = new javax.swing.GroupLayout(Mostrar);
         Mostrar.setLayout(MostrarLayout);
         MostrarLayout.setHorizontalGroup(
             MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 634, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         MostrarLayout.setVerticalGroup(
             MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 648, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jScrollPane3.setViewportView(Mostrar);
+        jScrollPane2.setViewportView(Mostrar);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(475, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(395, 395, 395))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(No_elim, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(Belim)
+                        .addGap(18, 18, 18)
+                        .addComponent(Bconfycon)
+                        .addGap(0, 242, Short.MAX_VALUE))
+                    .addComponent(jScrollPane2))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -263,9 +284,17 @@ public class Menu_Principal extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
-                    .addComponent(jScrollPane3))
-                .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 605, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(No_elim, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(Belim)
+                            .addComponent(Bconfycon))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -353,13 +382,45 @@ public class Menu_Principal extends javax.swing.JFrame {
         graficarlista();
     }//GEN-LAST:event_jButton8MouseClicked
 
+    private void BelimMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BelimMouseClicked
+       boolean ban=false;
+        if(!No_elim.getText().isEmpty())
+        {
+            
+            for(int i=0;i<No_elim.getText().length();i++)
+            {
+                
+                if(Character.isLetter(No_elim.getText().charAt(i))||Integer.parseInt(No_elim.getText())>(lista.tamano()-1))
+                {
+                    ban=true;
+                }
+            }
+            if(ban==false)
+            {
+                lista.Eliminar(Integer.parseInt(No_elim.getText())+1);
+                graficarlista();
+            }
+            else
+            {
+                System.out.println("no se puede eliminar ya que el indice indicado no exsiste");
+            }
+        }
+        else
+        {
+            System.out.println("cadena vacia");
+        }
+        
+    }//GEN-LAST:event_BelimMouseClicked
+
     
     public void graficarlista()
     {
         Nodo aux=lista.Inicio;
         Mostrar.removeAll();
         
-        int y=0;
+        int y=1;
+        int x=0;
+        int cont=0;
         
         while(aux!=null)
         {
@@ -367,12 +428,21 @@ public class Menu_Principal extends javax.swing.JFrame {
             {
                 javax.swing.JLabel temp=new javax.swing.JLabel();
                 aux.o.imagen.setText(aux.o.nombre);
-                temp.setText(y/100+").");
+                temp.setText((y+cont)/100+").");
                 Mostrar.add(aux.o.imagen);
                 Mostrar.add(temp);
-                aux.o.imagen.setBounds(30, y, 200, 100);
-                temp.setBounds(0, y, 30, 100);
+                Mostrar.setPreferredSize(new Dimension(630,581));
+                aux.o.imagen.setBounds(x+30, y, 200, 100);
+                temp.setBounds(x, y, 30, 100);
+                if(y>=500)
+                {
+                    x=x+210;
+                    y=1;
+                    cont=cont+600;
+                }
+                else{
                 y=y+100;
+                }
             }  
             aux=aux.next;
         }
@@ -389,7 +459,10 @@ public class Menu_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Bconfycon;
+    private javax.swing.JButton Belim;
     private javax.swing.JPanel Mostrar;
+    private javax.swing.JTextField No_elim;
     private javax.swing.JPanel Seleccion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -402,7 +475,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

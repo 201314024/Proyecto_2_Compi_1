@@ -1,4 +1,7 @@
 package practica1_edd;
+
+import java.awt.Rectangle;
+
 public class Menu_Principal extends javax.swing.JFrame {
     public Objeto personaje=new Objeto();
     public Objeto ficha=new Objeto();
@@ -8,21 +11,29 @@ public class Menu_Principal extends javax.swing.JFrame {
     public Objeto koopa=new Objeto();
     public Objeto pared=new Objeto();
     public Objeto piso=new Objeto();
+    public Lista lista=new Lista();
 
     
     public Menu_Principal() {
         initComponents();
         iniciar();
-        /*Seleccion.add(personaje.imagen);
-        Seleccion.add(ficha.imagen);
-        Seleccion.add(castillo.imagen);
-        Seleccion.add(goomba.imagen);
-        Seleccion.add(hongo.imagen);
-        Seleccion.add(koopa.imagen);
-        Seleccion.add(pared.imagen);
-        Seleccion.add(piso.imagen);*/
+
         
         
+        
+        
+    }
+    
+    public void iniciar()
+    {
+        personaje.imagen("mario.jpg");
+        ficha.imagen("ficha.png");
+        castillo.imagen("castillo.jpg");
+        goomba.imagen("goomba.png");
+        hongo.imagen("hongo.png");
+        koopa.imagen("koopa.jpg");
+        pared.imagen("pared.png");
+        piso.imagen("piso.png");
         javax.swing.GroupLayout SeleccionLayout = new javax.swing.GroupLayout(Seleccion);
         Seleccion.setLayout(SeleccionLayout);
         SeleccionLayout.setHorizontalGroup(
@@ -56,21 +67,6 @@ public class Menu_Principal extends javax.swing.JFrame {
                 .addComponent(piso.imagen)
             )
         );
-        
-        
-        
-    }
-    
-    public void iniciar()
-    {
-        personaje.imagen("mario.jpg");
-        ficha.imagen("ficha.png");
-        castillo.imagen("castillo.jpg");
-        goomba.imagen("goomba.png");
-        hongo.imagen("hongo.png");
-        koopa.imagen("koopa.jpg");
-        pared.imagen("pared.png");
-        piso.imagen("piso.png");
     }
  
 
@@ -98,8 +94,8 @@ public class Menu_Principal extends javax.swing.JFrame {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jPanel4 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        Mostrar = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -109,27 +105,61 @@ public class Menu_Principal extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mario Maker Guatemalteco");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+        jButton1.setText("Agregar");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton1MouseClicked(evt);
             }
         });
 
-        jButton1.setText("Agregar");
-
         jButton2.setText("Agregar");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
 
         jButton3.setText("Agregar");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton3MouseClicked(evt);
+            }
+        });
 
         jButton4.setText("Agregar");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
 
         jButton5.setText("Agregar");
+        jButton5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton5MouseClicked(evt);
+            }
+        });
 
         jButton6.setText("Agregar");
+        jButton6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton6MouseClicked(evt);
+            }
+        });
 
         jButton7.setText("Agregar");
+        jButton7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton7MouseClicked(evt);
+            }
+        });
 
         jButton8.setText("Agregar");
+        jButton8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton8MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout SeleccionLayout = new javax.swing.GroupLayout(Seleccion);
         Seleccion.setLayout(SeleccionLayout);
@@ -198,32 +228,32 @@ public class Menu_Principal extends javax.swing.JFrame {
 
         jScrollPane1.setViewportView(Seleccion);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 620, Short.MAX_VALUE)
+        javax.swing.GroupLayout MostrarLayout = new javax.swing.GroupLayout(Mostrar);
+        Mostrar.setLayout(MostrarLayout);
+        MostrarLayout.setHorizontalGroup(
+            MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 634, Short.MAX_VALUE)
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        MostrarLayout.setVerticalGroup(
+            MostrarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 648, Short.MAX_VALUE)
         );
 
-        jScrollPane2.setViewportView(jPanel4);
+        jScrollPane3.setViewportView(Mostrar);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(475, Short.MAX_VALUE)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(395, 395, 395))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 639, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2)
+                .addComponent(jScrollPane3)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -233,8 +263,8 @@ public class Menu_Principal extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jScrollPane2))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 650, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3))
                 .addContainerGap())
         );
 
@@ -254,10 +284,101 @@ public class Menu_Principal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
+        Objeto temp=new Objeto();
+        temp.nombre=jTextField1.getText();
+        temp.imagen("mario.jpg");
+        lista.Insertar(temp);
+        jButton1.setEnabled(false);
+        jTextField1.setEnabled(false);
+        graficarlista();
+    }//GEN-LAST:event_jButton1MouseClicked
 
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        Objeto temp=new Objeto();
+        temp.nombre=jTextField2.getText();
+        temp.imagen("ficha.png");
+        lista.Insertar(temp);
+        graficarlista();
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseClicked
+        Objeto temp=new Objeto();
+        temp.nombre=jTextField3.getText();
+        temp.imagen("castillo.jpg");
+        lista.Insertar(temp);
+        jButton3.setEnabled(false);
+        jTextField3.setEnabled(false);
+        graficarlista();
+    }//GEN-LAST:event_jButton3MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        Objeto temp=new Objeto();
+        temp.nombre=jTextField4.getText();
+        temp.imagen("goomba.png");
+        lista.Insertar(temp);
+        graficarlista();
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton5MouseClicked
+        Objeto temp=new Objeto();
+        temp.nombre=jTextField5.getText();
+        temp.imagen("hongo.png");
+        lista.Insertar(temp);
+        graficarlista();
+    }//GEN-LAST:event_jButton5MouseClicked
+
+    private void jButton6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton6MouseClicked
+        Objeto temp=new Objeto();
+        temp.nombre=jTextField6.getText();
+        temp.imagen("koopa.jpg");
+        lista.Insertar(temp);
+        graficarlista();
+    }//GEN-LAST:event_jButton6MouseClicked
+
+    private void jButton7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton7MouseClicked
+        Objeto temp=new Objeto();
+        temp.nombre=jTextField7.getText();
+        temp.imagen("pared.png");
+        lista.Insertar(temp);
+        graficarlista();
+    }//GEN-LAST:event_jButton7MouseClicked
+
+    private void jButton8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton8MouseClicked
+        Objeto temp=new Objeto();
+        temp.nombre=jTextField8.getText();
+        temp.imagen("piso.png");
+        lista.Insertar(temp);
+        //lista.mostrar();
+        graficarlista();
+    }//GEN-LAST:event_jButton8MouseClicked
+
+    
+    public void graficarlista()
+    {
+        Nodo aux=lista.Inicio;
+        Mostrar.removeAll();
+        
+        int y=0;
+        
+        while(aux!=null)
+        {
+            if(aux!=lista.Inicio)
+            {
+                javax.swing.JLabel temp=new javax.swing.JLabel();
+                aux.o.imagen.setText(aux.o.nombre);
+                temp.setText(y/100+").");
+                Mostrar.add(aux.o.imagen);
+                Mostrar.add(temp);
+                aux.o.imagen.setBounds(30, y, 200, 100);
+                temp.setBounds(0, y, 30, 100);
+                y=y+100;
+            }  
+            aux=aux.next;
+        }
+       
+        
+    }
     public static void main(String args[]) {
         
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -268,6 +389,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel Mostrar;
     private javax.swing.JPanel Seleccion;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -279,9 +401,8 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton8;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;

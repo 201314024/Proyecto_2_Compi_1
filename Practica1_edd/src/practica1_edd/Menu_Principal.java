@@ -13,7 +13,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     public Objeto pared=new Objeto();
     public Objeto piso=new Objeto();
     public Lista lista=new Lista();
-
+    public Matriz matriz=new Matriz();
     
     public Menu_Principal() {
         initComponents();
@@ -68,6 +68,7 @@ public class Menu_Principal extends javax.swing.JFrame {
                 .addComponent(piso.imagen)
             )
         );
+        System.out.println(lista.IsEmpty());
     }
  
 
@@ -75,6 +76,13 @@ public class Menu_Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        Ventana_matriz = new javax.swing.JFrame();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        fondo = new javax.swing.JPanel();
+        titulo2 = new javax.swing.JLabel();
+        Add_F = new javax.swing.JButton();
+        Add_C = new javax.swing.JButton();
+        lista_show = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -100,6 +108,91 @@ public class Menu_Principal extends javax.swing.JFrame {
         Bconfycon = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane(Mostrar);
         Mostrar = new javax.swing.JPanel();
+
+        fondo.setBackground(new java.awt.Color(0, 0, 255));
+        fondo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                fondoMouseClicked(evt);
+            }
+        });
+
+        titulo2.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
+        titulo2.setForeground(new java.awt.Color(255, 255, 255));
+        titulo2.setText("Mario Maker Guatemalteco");
+
+        Add_F.setText("Argregar Fila");
+        Add_F.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Add_FMouseClicked(evt);
+            }
+        });
+
+        Add_C.setText("Agregar Columna");
+        Add_C.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                Add_CMouseClicked(evt);
+            }
+        });
+
+        lista_show.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lista_showMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout lista_showLayout = new javax.swing.GroupLayout(lista_show);
+        lista_show.setLayout(lista_showLayout);
+        lista_showLayout.setHorizontalGroup(
+            lista_showLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 140, Short.MAX_VALUE)
+        );
+        lista_showLayout.setVerticalGroup(
+            lista_showLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 100, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout fondoLayout = new javax.swing.GroupLayout(fondo);
+        fondo.setLayout(fondoLayout);
+        fondoLayout.setHorizontalGroup(
+            fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fondoLayout.createSequentialGroup()
+                .addGap(411, 411, 411)
+                .addComponent(titulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 443, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(446, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(Add_C)
+                    .addComponent(Add_F)
+                    .addComponent(lista_show, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(73, 73, 73))
+        );
+        fondoLayout.setVerticalGroup(
+            fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(fondoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(titulo2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(17, 17, 17)
+                .addComponent(Add_F)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Add_C)
+                .addGap(18, 18, 18)
+                .addComponent(lista_show, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(248, Short.MAX_VALUE))
+        );
+
+        jScrollPane3.setViewportView(fondo);
+
+        javax.swing.GroupLayout Ventana_matrizLayout = new javax.swing.GroupLayout(Ventana_matriz.getContentPane());
+        Ventana_matriz.getContentPane().setLayout(Ventana_matrizLayout);
+        Ventana_matrizLayout.setHorizontalGroup(
+            Ventana_matrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 1300, Short.MAX_VALUE)
+        );
+        Ventana_matrizLayout.setVerticalGroup(
+            Ventana_matrizLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -240,6 +333,11 @@ public class Menu_Principal extends javax.swing.JFrame {
         });
 
         Bconfycon.setText("Confirmar y Continuar");
+        Bconfycon.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BconfyconMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout MostrarLayout = new javax.swing.GroupLayout(Mostrar);
         Mostrar.setLayout(MostrarLayout);
@@ -301,9 +399,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -321,6 +417,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         jButton1.setEnabled(false);
         jTextField1.setEnabled(false);
         graficarlista();
+        
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
@@ -378,7 +475,6 @@ public class Menu_Principal extends javax.swing.JFrame {
         temp.nombre=jTextField8.getText();
         temp.imagen("piso.png");
         lista.Insertar(temp);
-        //lista.mostrar();
         graficarlista();
     }//GEN-LAST:event_jButton8MouseClicked
 
@@ -412,6 +508,92 @@ public class Menu_Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BelimMouseClicked
 
+    private void BconfyconMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BconfyconMouseClicked
+        this.setVisible(false);
+        Ventana_matriz.setVisible(true);
+        Ventana_matriz.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        Ventana_matriz.setBounds(this.getBounds());
+        Objeto o=new Objeto();
+        o.imagen("avatar.jpg");
+        matriz.Add(0, 0, 1, o);
+        matriz.Add(0, 1, 1, o);
+        matriz.Add(1, 0, 1, o);
+        matriz.Add(1, 1, 1, o);
+        matriz.Add(2, 0, 1, o);
+        matriz.Add(2, 1, 1, o);
+        matriz.Add(3, 0, 1, o);
+        matriz.Add(3, 1, 1, o);
+        int x=100;
+        int y=585;
+        for(int i=0;i<=matriz.maxIndiceX();i++)
+        {
+            y=585;
+            for(int j=0;j<=matriz.maxIndiceY();j++)
+            {
+                javax.swing.JLabel temp=new javax.swing.JLabel();
+                temp.setIcon(matriz.Get(i, j, 1).dato.imagen.getIcon()); 
+                fondo.add(temp);
+                temp.setBounds(x, y, 100, 100);
+                y=y-100;
+                
+            }
+            x=x+100;
+        }
+        lista_show.add(lista.getlast().imagen);
+        lista.getlast().imagen.setBounds(0, 0, 140, 100);
+ 
+    }//GEN-LAST:event_BconfyconMouseClicked
+
+    private void Add_FMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Add_FMouseClicked
+        int y =matriz.maxIndiceY()+1;
+        for(int i=0;i<=matriz.maxIndiceX();i++)
+        {
+            
+            Objeto o=new Objeto();
+            o.imagen("avatar.jpg");
+            matriz.Add(i,y, 1,o);
+        }
+        graficarmatriz();
+    }//GEN-LAST:event_Add_FMouseClicked
+
+    private void Add_CMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Add_CMouseClicked
+        int x =matriz.maxIndiceX()+1;
+        for(int i=0;i<=matriz.maxIndiceY();i++)
+        {
+            Objeto o=new Objeto();
+            o.imagen("avatar.jpg");
+            matriz.Add(x,i , 1,o);
+        }
+        graficarmatriz();
+    }//GEN-LAST:event_Add_CMouseClicked
+
+    private void lista_showMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lista_showMouseClicked
+        System.out.println("toco aqui");
+    }//GEN-LAST:event_lista_showMouseClicked
+
+    private void fondoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fondoMouseClicked
+        System.out.println("toco aqui");   
+    }//GEN-LAST:event_fondoMouseClicked
+
+    public void graficarmatriz()
+    {
+        int x=100;
+        int y=585;
+        for(int i=0;i<=matriz.maxIndiceX();i++)
+        {
+            y=585;
+            for(int j=0;j<=matriz.maxIndiceY();j++)
+            {
+                javax.swing.JLabel temp=new javax.swing.JLabel();
+                temp.setIcon(matriz.Get(i, j, 1).dato.imagen.getIcon()); 
+                fondo.add(temp);
+                temp.setBounds(x, y, 100, 100);
+                y=y-100;
+                
+            }
+            x=x+100;
+        }
+    }
     
     public void graficarlista()
     {
@@ -459,11 +641,15 @@ public class Menu_Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Add_C;
+    private javax.swing.JButton Add_F;
     private javax.swing.JButton Bconfycon;
     private javax.swing.JButton Belim;
     private javax.swing.JPanel Mostrar;
     private javax.swing.JTextField No_elim;
     private javax.swing.JPanel Seleccion;
+    private javax.swing.JFrame Ventana_matriz;
+    private javax.swing.JPanel fondo;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -476,6 +662,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
@@ -484,5 +671,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JPanel lista_show;
+    private javax.swing.JLabel titulo2;
     // End of variables declaration//GEN-END:variables
 }

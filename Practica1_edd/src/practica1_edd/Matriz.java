@@ -22,6 +22,8 @@ public class Matriz {
 
         public void Add(int x, int y, int dimension, Objeto d)
         {
+            d.x=x;
+            d.y=y;
             NodoMatriz nuevoNodo = new NodoMatriz(dimension, d, x, y);
             
             /*Si esta vacia la matriz*/
@@ -758,7 +760,7 @@ public class Matriz {
             return cod1;
         }
 
-        private int maxIndiceX()
+        public int maxIndiceX()
         {
             NodoCabecera tempX = this.cabezasXI;
             while (tempX != null)
@@ -772,7 +774,7 @@ public class Matriz {
             return tempX.indice;
         }
 
-        private int maxIndiceY()
+        public int maxIndiceY()
         {
             NodoCabecera tempY = this.cabezasYI;
             while (tempY != null)

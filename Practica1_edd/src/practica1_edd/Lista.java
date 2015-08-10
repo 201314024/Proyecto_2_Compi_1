@@ -1,8 +1,4 @@
-
-
 package practica1_edd;
-
-
 public class Lista {
     
     public Nodo Inicio;
@@ -12,9 +8,14 @@ public class Lista {
     {
         Inicio=new Nodo();
         Fin=new Nodo();
+        
         cont=0;
     }
     
+    public Objeto getlast()
+    {
+        return Fin.back.o;
+    }
     public void Insertar(Objeto o)
     {
         Nodo nuevo=new Nodo();
@@ -37,6 +38,30 @@ public class Lista {
             }
                  
         
+        }
+    }
+    
+    public void Eliminar_last()
+    {
+        Nodo aux=Fin.back;
+        Nodo aux2=Fin.back.back;
+        
+        aux.back=null;
+        aux.next=null;
+        aux2.next=Fin;
+        Fin.back=aux2;
+        
+        
+    }
+    public boolean IsEmpty()
+    {
+        if((Inicio.next==Fin))
+        {
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
     public void Eliminar(int a)

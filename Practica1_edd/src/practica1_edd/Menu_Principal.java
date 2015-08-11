@@ -2,6 +2,7 @@ package practica1_edd;
 
 import java.awt.Dimension;
 import java.awt.Rectangle;
+import java.io.*;
 
 public class Menu_Principal extends javax.swing.JFrame {
     public Objeto personaje=new Objeto();
@@ -83,6 +84,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         Add_F = new javax.swing.JButton();
         Add_C = new javax.swing.JButton();
         lista_show = new javax.swing.JPanel();
+        grafics = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -151,6 +153,13 @@ public class Menu_Principal extends javax.swing.JFrame {
             .addGap(0, 100, Short.MAX_VALUE)
         );
 
+        grafics.setText("Graficar lista y matriz");
+        grafics.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                graficsMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout fondoLayout = new javax.swing.GroupLayout(fondo);
         fondo.setLayout(fondoLayout);
         fondoLayout.setHorizontalGroup(
@@ -162,6 +171,7 @@ public class Menu_Principal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, fondoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(fondoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(grafics)
                     .addComponent(Add_C)
                     .addComponent(Add_F)
                     .addComponent(lista_show, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -178,7 +188,9 @@ public class Menu_Principal extends javax.swing.JFrame {
                 .addComponent(Add_C)
                 .addGap(18, 18, 18)
                 .addComponent(lista_show, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(248, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(grafics)
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         jScrollPane3.setViewportView(fondo);
@@ -568,12 +580,79 @@ public class Menu_Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_Add_CMouseClicked
 
     private void lista_showMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lista_showMouseClicked
-        System.out.println("toco aqui");
+       
     }//GEN-LAST:event_lista_showMouseClicked
 
     private void fondoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_fondoMouseClicked
-        System.out.println("toco aqui");   
+         
     }//GEN-LAST:event_fondoMouseClicked
+
+    private void graficsMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_graficsMouseClicked
+        try
+        {
+            File archivo = new File("C:\\Users\\BryanAlexander\\Desktop\\matriz.txt");
+            FileWriter writer = new FileWriter(archivo);
+            PrintWriter salida = new PrintWriter(writer);
+            salida.write("digraph G{");
+            String cadena="";
+            int cont=0;
+            for(int i=0;i<=matriz.maxIndiceX();i++)
+            {
+            
+            for(int j=0;j<=matriz.maxIndiceY();j++)
+                {
+                    if(matriz.Get(i, j, 1).dato.nombre.equals(""))
+                    {
+                        cadena= cadena+"Vacio"+cont+"; \n";
+                        cont++;
+                    }
+                    else
+                    {
+                        cadena= cadena+matriz.Get(i, j, 1).dato.nombre+";"+"\n";
+                    }
+                     
+                    
+                }
+            
+            }
+            
+            
+            salida.write(cadena);
+            salida.write("}");
+            salida.close();
+        }catch(Exception e){
+                    System.out.println(e);
+                }
+        
+        try {
+      
+      String dotPath = "C:\\Program Files (x86)\\Graphviz2.38\\bin\\dot.exe";
+      
+      String fileInputPath = "C:\\Users\\BryanAlexander\\Desktop\\matriz.txt";
+      String fileOutputPath = "C:\\Users\\BryanAlexander\\Desktop\\matriz.jpg";
+      
+      String tParam = "-Tjpg";
+      String tOParam = "-o";
+        
+      String[] cmd = new String[5];
+      cmd[0] = dotPath;
+      cmd[1] = tParam;
+      cmd[2] = fileInputPath;
+      cmd[3] = tOParam;
+      cmd[4] = fileOutputPath;
+                  
+      Runtime rt = Runtime.getRuntime();
+      
+      rt.exec( cmd );
+      rt.exec(cmd[0]+" "+cmd[1]+" "+cmd[2]+" "+cmd[3]+" "+cmd[4]);
+      System.out.println(cmd[0]+cmd[1]+cmd[2]+cmd[3]+cmd[4]);
+      
+    } catch (Exception ex) {
+      ex.printStackTrace();
+    }finally {
+                }
+        
+    }//GEN-LAST:event_graficsMouseClicked
 
     public void graficarmatriz()
     {
@@ -650,6 +729,7 @@ public class Menu_Principal extends javax.swing.JFrame {
     private javax.swing.JPanel Seleccion;
     private javax.swing.JFrame Ventana_matriz;
     private javax.swing.JPanel fondo;
+    private javax.swing.JButton grafics;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;

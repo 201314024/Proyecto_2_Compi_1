@@ -42,6 +42,7 @@
                       <Group type="102" alignment="1" attributes="0">
                           <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="grafics" min="-2" max="-2" attributes="0"/>
                               <Component id="Add_C" min="-2" max="-2" attributes="0"/>
                               <Component id="Add_F" min="-2" max="-2" attributes="0"/>
                               <Component id="lista_show" alignment="1" min="-2" max="-2" attributes="0"/>
@@ -61,7 +62,9 @@
                           <Component id="Add_C" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="lista_show" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace pref="248" max="32767" attributes="0"/>
+                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                          <Component id="grafics" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="207" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -112,6 +115,14 @@
                     </DimensionLayout>
                   </Layout>
                 </Container>
+                <Component class="javax.swing.JButton" name="grafics">
+                  <Properties>
+                    <Property name="text" type="java.lang.String" value="Graficar lista y matriz"/>
+                  </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="graficsMouseClicked"/>
+                  </Events>
+                </Component>
               </SubComponents>
             </Container>
           </SubComponents>

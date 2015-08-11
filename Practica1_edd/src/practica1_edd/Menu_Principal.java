@@ -213,6 +213,7 @@ public class Menu_Principal extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Mario Maker Guatemalteco");
+        jLabel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
         jButton1.setText("Agregar");
         jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -545,6 +546,7 @@ public class Menu_Principal extends javax.swing.JFrame {
                 javax.swing.JLabel temp=new javax.swing.JLabel();
                 temp.setIcon(matriz.Get(i, j, 1).dato.imagen.getIcon()); 
                 fondo.add(temp);
+                temp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
                 temp.setBounds(x, y, 100, 100);
                 y=y-100;
                 
@@ -666,6 +668,7 @@ public class Menu_Principal extends javax.swing.JFrame {
                 javax.swing.JLabel temp=new javax.swing.JLabel();
                 temp.setIcon(matriz.Get(i, j, 1).dato.imagen.getIcon()); 
                 fondo.add(temp);
+                temp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
                 temp.setBounds(x, y, 100, 100);
                 y=y-100;
                 

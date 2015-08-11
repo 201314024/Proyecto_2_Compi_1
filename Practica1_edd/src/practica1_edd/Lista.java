@@ -8,7 +8,8 @@ public class Lista {
     {
         Inicio=new Nodo();
         Fin=new Nodo();
-        
+        Inicio.o.nombre="Inicio";
+        Fin.o.nombre="Fin";
         cont=0;
     }
     

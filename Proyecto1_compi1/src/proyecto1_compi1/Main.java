@@ -1,10 +1,14 @@
 package proyecto1_compi1;
 import java.awt.BorderLayout;
+import java.awt.Desktop;
 import java.awt.Dimension;
+import java.io.File;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 
 public class Main extends javax.swing.JFrame {
@@ -178,12 +182,18 @@ public class Main extends javax.swing.JFrame {
         Bjugar = new javax.swing.JButton();
         Lista_movs = new javax.swing.JComboBox();
         Lpuntos = new javax.swing.JLabel();
+        V_acercade = new javax.swing.JFrame();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMenu3 = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         C_Arch.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -311,6 +321,34 @@ public class Main extends javax.swing.JFrame {
                 .addContainerGap(318, Short.MAX_VALUE))
         );
 
+        V_acercade.addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                V_acercadeWindowOpened(evt);
+            }
+        });
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jTextArea1.setText("Bryan Alexander Gonzalez Maddaleno\n201314024\nProyecto 1 Compi 1\nSegundo semestre 2015");
+        jScrollPane1.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout V_acercadeLayout = new javax.swing.GroupLayout(V_acercade.getContentPane());
+        V_acercade.getContentPane().setLayout(V_acercadeLayout);
+        V_acercadeLayout.setHorizontalGroup(
+            V_acercadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(V_acercadeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 326, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(64, Short.MAX_VALUE))
+        );
+        V_acercadeLayout.setVerticalGroup(
+            V_acercadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(V_acercadeLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(164, Short.MAX_VALUE))
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
@@ -340,6 +378,31 @@ public class Main extends javax.swing.JFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Ayuda");
+
+        jMenuItem1.setText("Acerca de");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem1);
+
+        jMenuItem2.setText("Manual Tecnico");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem2);
+
+        jMenuItem3.setText("Manual de usuario");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem3);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Archivos");
@@ -483,6 +546,27 @@ public class Main extends javax.swing.JFrame {
         
     }//GEN-LAST:event_BjugarMouseClicked
 
+    private void V_acercadeWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_V_acercadeWindowOpened
+        Dimension tamanio = V_acercade.getSize();
+        Mipanel p = new Mipanel(tamanio.width,tamanio.height);
+        V_acercade.add( p , BorderLayout.CENTER);
+        p.repaint();
+        V_acercade.repaint();
+    }//GEN-LAST:event_V_acercadeWindowOpened
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        V_acercade.setBounds(0, 0, 400, 300);
+        V_acercade.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        abrir_pdf("Manual de usuario");
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        abrir_pdf("Manual tecnico");
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
     public void verificar_pos()
     {
         
@@ -530,6 +614,23 @@ public class Main extends javax.swing.JFrame {
               
         }
     }
+    public void abrir_pdf(String file)
+     {
+         Desktop desktop;
+        
+         File File = new File(file+".pdf");
+         if (Desktop.isDesktopSupported()){
+           desktop = Desktop.getDesktop();
+            try {
+                desktop.open(File);
+                }
+            catch (IOException ex) {
+                System.out.println(ex);
+                }
+        }
+        else{ JOptionPane.showMessageDialog(null,"Lo lamento,no se puede abrir el archivo; ésta Maquina no soporta la API Desktop");
+        }
+     }
 
     //Crea un timer, inicia segundos a 0 y comienza a contar
     public void Contar(String vec[]) {
@@ -563,6 +664,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel Lpuntos;
     private javax.swing.JFrame P_juego;
     private javax.swing.JFrame V_Chooser;
+    private javax.swing.JFrame V_acercade;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
@@ -570,5 +672,10 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea jTextArea1;
     // End of variables declaration//GEN-END:variables
 }

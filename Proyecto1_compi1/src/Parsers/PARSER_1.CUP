@@ -1,0 +1,44 @@
+package Parsers;
+import java_cup.runtime.*;
+parser code
+{:
+/**Metodo al que se llama automáticamente ante algún error sintactico.*/
+public static proyecto1_compi1.Objeto o=new proyecto1_compi1.Objeto();
+public void syntax_error(Symbol s){
+System.out.println("Error en la Línea " + (s.right+1) +" Columna " +s.left+ ". Identificador " +s.value + " no reconocido." );
+}
+/**Metodo al que se llama en el momento en que ya no es posible una recuperación de errores.*/
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+System.out.println("Error en la Línea " + (s.right+1)+ "Columna "+s.left+". Identificador " + s.value + " no reconocido.");
+}
+:}
+terminal Oconf,Cconf,Ofondo,Cfondo,Odis,Cdis,tpath,tnomb,ttipo,tpuntos,tcreci,ttiempo,tlpath,Ollave,Cllave,Ocorch,Ccorch,tgionb,tdiag,tpunts,tpuntycom,tcom,tigual,tnumero,tlnombre;
+non terminal INICIA,A,B,C,D,E,F;
+start with INICIA;
+INICIA::= A;
+A::=Oconf B Cconf;
+B::=Ofondo C Cfondo Odis F Cdis;
+C::=Ollave E Cllave tcom C
+|Ollave E Cllave
+|Ocorch E Ccorch tcom C
+|Ocorch E Ccorch;
+E::= tnomb tigual tlnombre:a tpuntycom tpath tigual tlpath:b tpuntycom {:proyecto1_compi1.Fondo f=new  proyecto1_compi1.Fondo();
+			f.nombre=a.toString();
+			f.path=b.toString();
+		 proyecto1_compi1.Main.fondos.add(f);:}
+| tpath tigual tlpath:b tpuntycom tnomb tigual tlnombre:a tpuntycom{:proyecto1_compi1.Fondo f=new  proyecto1_compi1.Fondo();
+			f.nombre=a.toString();
+			f.path=b.toString();
+		 proyecto1_compi1.Main.fondos.add(f);:};
+F::=Ollave D Cllave tcom F
+|Ollave D Cllave
+|Ocorch D Ccorch tcom F
+|Ocorch D Ccorch;
+D::= tnomb tigual tlnombre:a tpuntycom D {:o.nombre=a.toString();:}
+| tpath tigual tlpath:b tpuntycom D{:o.path=b.toString();:}
+| ttipo tigual tlnombre:c tpuntycom D{:o.tipo=c.toString();:}
+| tpuntos tigual tnumero:d tpuntycom D{:o.puntos=Integer.parseInt(d.toString());:}
+| tcreci tigual tnumero:e tpuntycom D{:o.crecimiento=Integer.parseInt(e.toString());:}
+| ttiempo tigual tnumero:f tpuntycom D{:o.tiempo=Integer.parseInt(f.toString());:}
+| {:proyecto1_compi1.Main.objetos.add(o);
+	o=new proyecto1_compi1.Objeto();:};

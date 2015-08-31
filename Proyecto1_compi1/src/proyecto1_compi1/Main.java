@@ -11,9 +11,77 @@ public class Main extends javax.swing.JFrame {
     
     public static ArrayList <Fondo> fondos =new ArrayList <Fondo>();
     public static ArrayList <Objeto> objetos =new ArrayList <Objeto>();
-    public Objeto mat[][];
+    public static ArrayList <Estrategias> estrats =new ArrayList <Estrategias>();
+    public static Objeto mat[][];
+    public static Objeto matPl[][];
+    public static String vector[];
+    public static Objeto Player=new Objeto();
+    public static int cabezax=0,cabezay=0;
+    public static String nombre_fondo=" ";
+    public static Mipanel fondo;
+    public static int puntos=0;
+    public static int segundos;
+    private Timer timer = new Timer();
     
-    
+    public static void fondo_juego(String nombre)
+    {
+        for(int i=0;i<fondos.size();i++)
+        {
+            if(fondos.get(i).nombre.equals(nombre))
+            {
+                String temp="";
+                for(int a=1;a<fondos.get(i).path.length()-1;a++)
+                {
+                    temp=temp+fondos.get(i).path.charAt(a);
+                }
+                nombre_fondo=temp;
+            }
+        }
+    }
+    public static void add_mat(String nombre,int x,int y)       
+    {
+        for(int i=0;i<objetos.size();i++)
+        {
+            if(objetos.get(i).nombre.equals(nombre))
+            {
+                mat[x][y]=objetos.get(i);
+                mat[x][y].x=x;
+                mat[x][y].y=y;
+            }
+        }
+    }
+    public static void add_matx(String nombre,int xo,int xf,int y)
+    {
+        for(int i=0;i<objetos.size();i++)
+        {
+            if(objetos.get(i).nombre.equals(nombre))
+            {
+                for(int j=xo;j<=xf;j++)
+                {
+                    mat[j][y]=objetos.get(i);
+                    mat[j][y].x=j;
+                    mat[j][y].y=y;
+                }
+               
+            }
+        }
+    }
+    public static void add_maty(String nombre,int x,int yo,int yf)
+    {
+        for(int i=0;i<objetos.size();i++)
+        {
+            if(objetos.get(i).nombre.equals(nombre))
+            {
+                for(int j=yo;j<=yf;j++)
+                {
+                    mat[x][j]=objetos.get(i);
+                    mat[x][j].x=x;
+                    mat[x][j].y=j;
+                }
+               
+            }
+        }
+    }
     public Main() {
         initComponents();
     }
@@ -25,8 +93,75 @@ public class Main extends javax.swing.JFrame {
             new Parsers.sintactico_1(new Parsers.lexico_1( new FileReader(s))).parse();
                  } catch (Exception ex) {
                  Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
-                }//fin catch
+                }
                 System.out.println("----------------FIN DE COMPILACIÓN-----------------");
+    }
+    public void leer_arch2(String s)
+    {
+        System.out.println("--------------INICIO DE COMPILACIÓN-----------------");
+        try {
+            new Parsers.sintactico_2(new Parsers.lexico_2( new FileReader(s))).parse();
+                 } catch (Exception ex) {
+                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("----------------FIN DE COMPILACIÓN-----------------");
+    }
+    public void leer_arch3(String s)
+    {
+        System.out.println("--------------INICIO DE COMPILACIÓN-----------------");
+        try {
+            new Parsers.sintactico_3(new Parsers.lexico_3( new FileReader(s))).parse();
+                 } catch (Exception ex) {
+                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                System.out.println("----------------FIN DE COMPILACIÓN-----------------");
+    }
+    public void imgs()
+    {
+        for(int i=0;i<objetos.size();i++)
+        {
+            objetos.get(i).imagen();
+        }
+    }
+    public void iniciar_mat2()
+    {
+        matPl=new Objeto[mat.length][mat[0].length];
+        
+        for(int i=0;i<mat.length;i++)
+        {
+            for(int j=0;j<mat[0].length;j++)
+            {
+                matPl[i][j]=new Objeto();
+            }
+        }
+        Player.x=mat.length/2;
+        Player.y=mat[0].length/2;
+        cabezax=Player.x;
+        cabezay=Player.y;
+        Player.path="C:\\Users\\BryanAlexander\\Desktop\\ImagenesCompi1\\player.jpg";
+        Player.imagen2();
+        matPl[Player.x][Player.y]=Player;
+    }
+    public void pintar_mat()
+    {
+        for(int i=0;i<mat.length;i++)
+        {
+            for(int j=0;j<mat[0].length;j++)
+            {
+                javax.swing.JLabel temp=new javax.swing.JLabel();
+                temp.setIcon(mat[i][j].imagen.getIcon());
+                javax.swing.JLabel temp2=new javax.swing.JLabel();
+                temp2.setIcon(matPl[i][j].imagen.getIcon());
+                P_juego.add(temp2);
+                temp2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                temp2.setBounds((i*50),(j*50),50,50);
+                P_juego.add(temp);
+                temp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+                temp.setBounds((i*50),(j*50),50,50);
+            }
+        }
+        Lpuntos.setText("Puntos: "+puntos);
+        P_juego.repaint();
     }
 
     @SuppressWarnings("unchecked")
@@ -40,6 +175,9 @@ public class Main extends javax.swing.JFrame {
         V_Chooser = new javax.swing.JFrame();
         Chooser = new javax.swing.JFileChooser();
         P_juego = new javax.swing.JFrame();
+        Bjugar = new javax.swing.JButton();
+        Lista_movs = new javax.swing.JComboBox();
+        Lpuntos = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -59,12 +197,22 @@ public class Main extends javax.swing.JFrame {
         B_C_arch3.setForeground(new java.awt.Color(255, 255, 255));
         B_C_arch3.setText("Cargar Archivo 3");
         B_C_arch3.setOpaque(false);
+        B_C_arch3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                B_C_arch3MouseClicked(evt);
+            }
+        });
 
         B_C_arch2.setBackground(new java.awt.Color(255, 255, 255));
         B_C_arch2.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         B_C_arch2.setForeground(new java.awt.Color(255, 255, 255));
         B_C_arch2.setText("Cargar Archivo 2");
         B_C_arch2.setOpaque(false);
+        B_C_arch2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                B_C_arch2MouseClicked(evt);
+            }
+        });
 
         B_C_arch1.setBackground(new java.awt.Color(255, 255, 255));
         B_C_arch1.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
@@ -126,15 +274,41 @@ public class Main extends javax.swing.JFrame {
             }
         });
 
+        Bjugar.setText("Jugar");
+        Bjugar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                BjugarMouseClicked(evt);
+            }
+        });
+
+        Lista_movs.setModel(new javax.swing.DefaultComboBoxModel(new String[] {  }));
+
+        Lpuntos.setBackground(new java.awt.Color(0, 0, 0));
+        Lpuntos.setForeground(new java.awt.Color(255, 255, 255));
+
         javax.swing.GroupLayout P_juegoLayout = new javax.swing.GroupLayout(P_juego.getContentPane());
         P_juego.getContentPane().setLayout(P_juegoLayout);
         P_juegoLayout.setHorizontalGroup(
             P_juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1243, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, P_juegoLayout.createSequentialGroup()
+                .addContainerGap(1227, Short.MAX_VALUE)
+                .addGroup(P_juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Lpuntos)
+                    .addGroup(P_juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(Bjugar, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(Lista_movs, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap())
         );
         P_juegoLayout.setVerticalGroup(
             P_juegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 527, Short.MAX_VALUE)
+            .addGroup(P_juegoLayout.createSequentialGroup()
+                .addGap(155, 155, 155)
+                .addComponent(Lista_movs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(Bjugar)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Lpuntos)
+                .addContainerGap(318, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -185,21 +359,21 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(201, 201, 201)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
                         .addGap(409, 409, 409)
-                        .addComponent(jButton1)))
-                .addContainerGap(278, Short.MAX_VALUE))
+                        .addComponent(jButton1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(191, 191, 191)
+                        .addComponent(jLabel1)))
+                .addContainerGap(288, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(130, 130, 130)
+                .addGap(100, 100, 100)
                 .addComponent(jLabel1)
-                .addGap(18, 18, 18)
+                .addGap(48, 48, 48)
                 .addComponent(jButton1)
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addContainerGap(107, Short.MAX_VALUE))
         );
 
         pack();
@@ -233,34 +407,143 @@ public class Main extends javax.swing.JFrame {
         FileFilter filter1 = new ExtensionFileFilter(".snake ", new String[] { ".snake" });
         Chooser.setFileFilter(filter1);
         int seleccion = Chooser.showOpenDialog(this);
-        System.out.println(Chooser.getSelectedFile().getAbsolutePath());
         leer_arch1(Chooser.getSelectedFile().getAbsolutePath());
         V_Chooser.setVisible(false);
-        for(int i=0;i<fondos.size();i++)
-        {
-            System.out.println(fondos.get(i).nombre);
-        }
-        for(int i=0;i<objetos.size();i++)
-        {
-            System.out.println(objetos.get(i).nombre+" , "+objetos.get(i).path+" , "+objetos.get(i).tipo+" , "+objetos.get(i).crecimiento+" , "+objetos.get(i).puntos+" , "+objetos.get(i).tiempo);
-        }
+        imgs();
     }//GEN-LAST:event_B_C_arch1MouseClicked
 
     private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseClicked
         this.setVisible(false);
+        C_Arch.setVisible(false);
         P_juego.setBounds(0, 0, 1350, 750);
         P_juego.setVisible(true);
         P_juego.setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
     }//GEN-LAST:event_jButton1MouseClicked
 
     private void P_juegoWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_P_juegoWindowOpened
+        iniciar_mat2();
+        pintar_mat();
         Dimension tamanio = P_juego.getSize();
-        Mipanel p = new Mipanel(tamanio.width,tamanio.height);
-        P_juego.add( p , BorderLayout.CENTER);
-        p.repaint();
-        this.repaint();
+        fondo = new Mipanel(tamanio.width,tamanio.height);
+        fondo.cimg(nombre_fondo);
+        P_juego.add( fondo , BorderLayout.CENTER);
+        fondo.repaint();
+        P_juego.repaint();
+        Lpuntos.setText("Puntos: "+puntos);
+        for(int i=0;i<estrats.size();i++)
+        {
+            Lista_movs.addItem(estrats.get(i).nombre);
+        }
     }//GEN-LAST:event_P_juegoWindowOpened
 
+    private void B_C_arch2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_C_arch2MouseClicked
+        V_Chooser.setBounds(0, 0, 532, 374);
+        V_Chooser.setVisible(true);
+        FileFilter filter1 = new ExtensionFileFilter(".snake ", new String[] { ".snake" });
+        Chooser.setFileFilter(filter1);
+        int seleccion = Chooser.showOpenDialog(this);
+        leer_arch2(Chooser.getSelectedFile().getAbsolutePath());
+        V_Chooser.setVisible(false);
+        
+        
+    }//GEN-LAST:event_B_C_arch2MouseClicked
+
+    private void B_C_arch3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_B_C_arch3MouseClicked
+        V_Chooser.setBounds(0, 0, 532, 374);
+        V_Chooser.setVisible(true);
+        FileFilter filter1 = new ExtensionFileFilter(".snake ", new String[] { ".snake" });
+        Chooser.setFileFilter(filter1);
+        int seleccion = Chooser.showOpenDialog(this);
+        leer_arch3(Chooser.getSelectedFile().getAbsolutePath());
+        V_Chooser.setVisible(false);
+    }//GEN-LAST:event_B_C_arch3MouseClicked
+
+    private void BjugarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_BjugarMouseClicked
+        String movimientos[];
+        boolean flag=false;
+        int indice=0;
+        for(int i=0;i<estrats.size();i++)
+        {
+            if(estrats.get(i).nombre.equals(Lista_movs.getSelectedItem()))
+            {
+                flag=true;
+                indice=i;
+            }           
+        }
+        if(flag==true)
+        {
+            movimientos=estrats.get(indice).movs;
+        }
+        else
+        {
+            movimientos=new String[0];
+        }
+        Contar(movimientos);
+            
+        
+    }//GEN-LAST:event_BjugarMouseClicked
+
+    public void verificar_pos()
+    {
+        
+        P_juego.add( fondo , BorderLayout.CENTER);
+        
+        fondo.repaint();
+        P_juego.repaint();
+        System.out.println("entro aqui "+Player.x+"  "+Player.y);
+        System.out.println("entro aqui "+cabezax+"  "+cabezay);
+        switch(mat[Player.x][Player.y].tipo)
+        {
+            case "manzana":puntos=puntos+mat[Player.x][Player.y].puntos;mat[Player.x][Player.y]=new Objeto();matPl[Player.x][Player.y]=Player;matPl[cabezax][cabezay]=new Objeto();cabezay=Player.y;cabezax=Player.x;pintar_mat();break;
+            case "bomba":puntos=puntos+mat[Player.x][Player.y].puntos;mat[Player.x][Player.y]=new Objeto();matPl[Player.x][Player.y]=Player;matPl[cabezax][cabezay]=new Objeto();cabezay=Player.y;cabezax=Player.x;pintar_mat();break;
+            case "bonus":puntos=puntos+mat[Player.x][Player.y].puntos;mat[Player.x][Player.y]=new Objeto();matPl[Player.x][Player.y]=Player;matPl[cabezax][cabezay]=new Objeto();cabezay=Player.y;cabezax=Player.x;pintar_mat();break;
+            case "veneno":puntos=0;mat[Player.x][Player.y]=new Objeto();matPl[Player.x][Player.y]=Player;cabezay=Player.y;matPl[cabezax][cabezay]=new Objeto();cabezax=Player.x;pintar_mat();break;
+            case "estrella":;break;
+            case "pared":Player.x=cabezax;Player.y=cabezay;break;    
+            case "":matPl[Player.x][Player.y]=Player;matPl[cabezax][cabezay]=new Objeto();cabezay=Player.y;cabezax=Player.x;pintar_mat();break;
+        }
+    }
+    ;
+    class Contador extends TimerTask {
+
+        public void run() {
+            
+            segundos++;
+            
+            if(segundos<vector.length)
+            {
+                
+                switch(vector[segundos])
+                {
+                case "arriba":Player.y=Player.y-1;verificar_pos();break;
+                case "abajo":Player.y=Player.y+1;verificar_pos();break;
+                case "izquierda":Player.x=Player.x-1;verificar_pos();break;
+                case "derecha":Player.x=Player.x+1;verificar_pos();break;
+                case "atras":break;
+                }
+            }
+            else
+            {
+                Detener();
+            }
+            
+              
+        }
+    }
+
+    //Crea un timer, inicia segundos a 0 y comienza a contar
+    public void Contar(String vec[]) {
+        this.segundos = 0;
+        timer = new Timer();
+        timer.schedule(new Contador(), 0, 1000);
+        vector=vec;
+        
+    }
+
+    //Detiene el contador
+    public void Detener() {
+        timer.cancel();
+    }
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -273,8 +556,11 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JButton B_C_arch1;
     private javax.swing.JButton B_C_arch2;
     private javax.swing.JButton B_C_arch3;
+    private javax.swing.JButton Bjugar;
     private javax.swing.JFrame C_Arch;
     private javax.swing.JFileChooser Chooser;
+    private javax.swing.JComboBox Lista_movs;
+    private javax.swing.JLabel Lpuntos;
     private javax.swing.JFrame P_juego;
     private javax.swing.JFrame V_Chooser;
     private javax.swing.JButton jButton1;

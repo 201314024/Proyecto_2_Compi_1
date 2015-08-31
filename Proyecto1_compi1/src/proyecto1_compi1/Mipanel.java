@@ -13,7 +13,7 @@ public class Mipanel extends javax.swing.JPanel {
     }
     public void cimg(String path)
     {
-        imagenFondo = new ImageIcon(getClass().getResource(path));
+        imagenFondo = new ImageIcon(path);
         repaint();
     }
         

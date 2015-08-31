@@ -1,0 +1,37 @@
+package Parsers;
+import java_cup.runtime.*;
+parser code
+{:
+/**Metodo al que se llama automáticamente ante algún error sintactico.*/
+
+public static int x=0,y=0;
+public void syntax_error(Symbol s){
+System.out.println("Error en la Línea " + (s.right+1) +" Columna " +s.left+ ". Identificador " +s.value + " no reconocido." );
+}
+/**Metodo al que se llama en el momento en que ya no es posible una recuperación de errores.*/
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+System.out.println("Error en la Línea " + (s.right+1)+ "Columna "+s.left+". Identificador " + s.value + " no reconocido.");
+}
+:}
+terminal Oesce,Cesce,Opared,Cpared,Oex,Cex,Oest,Cest,Obon,Cbon,Oman,Cman,Oven,Cven,Obom,Cbom,tfondo,tancho,talto,Oparen,Cparen,Ctag,tdpunt,tpuntycom,tcom,tigual,tnumero,tlnombre;
+non terminal INICIA,A,B,C,D,E,F,G,H;
+start with INICIA;
+INICIA::= A;
+A::=Oesce H Ctag B Cesce;
+H::= tfondo tigual tlnombre:fnombre tpuntycom {:proyecto1_compi1.Main.fondo_juego(fnombre.toString());:} H
+| talto tigual tnumero:posx tpuntycom {:x=Integer.parseInt(posx.toString());:} H
+| tancho tigual tnumero:posy tpuntycom {:y=Integer.parseInt(posy.toString());:} H
+| {:proyecto1_compi1.Main.mat=new proyecto1_compi1.Objeto[x][y]; for(int i=0;i<x;i++){for(int j=0;j<y;j++){proyecto1_compi1.Main.mat[i][j]=new proyecto1_compi1.Objeto();}};:};
+B::=Opared C Cpared Oex D Cex;
+C::=tlnombre:a Oparen tnumero:b tcom tnumero:c Cparen tpuntycom {:proyecto1_compi1.Main.add_mat(a.toString(),Integer.parseInt(b.toString()),Integer.parseInt(c.toString()));:} C
+| tlnombre:a Oparen tnumero:b tdpunt tnumero:d tcom tnumero:c Cparen tpuntycom {:proyecto1_compi1.Main.add_matx(a.toString(),Integer.parseInt(b.toString()),Integer.parseInt(d.toString()),Integer.parseInt(c.toString()));:} C
+| tlnombre:a Oparen tnumero:b tcom tnumero:c tdpunt tnumero:d Cparen tpuntycom {:proyecto1_compi1.Main.add_maty(a.toString(),Integer.parseInt(b.toString()),Integer.parseInt(c.toString()),Integer.parseInt(d.toString()));:} C
+| {};
+D::= Oest E Cest D
+| Obon E Cbon D
+| Oman E Cman D
+| Oven E Cven D
+| Obom E Cbom D
+| {};
+E::=tlnombre:a Oparen tnumero:b tcom tnumero:c Cparen tpuntycom {:proyecto1_compi1.Main.add_mat(a.toString(),Integer.parseInt(b.toString()),Integer.parseInt(c.toString()));:} E
+| {};

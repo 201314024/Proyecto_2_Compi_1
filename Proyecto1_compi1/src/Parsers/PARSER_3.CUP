@@ -1,0 +1,26 @@
+package Parsers;
+import java_cup.runtime.*;
+parser code
+{:
+/**Metodo al que se llama automáticamente ante algún error sintactico.*/
+public static proyecto1_compi1.Estrategias est;
+public static String movis="";
+public void syntax_error(Symbol s){
+System.out.println("Error en la Línea " + (s.right+1) +" Columna " +s.left+ ". Identificador " +s.value + " no reconocido." );
+}
+/**Metodo al que se llama en el momento en que ya no es posible una recuperación de errores.*/
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+System.out.println("Error en la Línea " + (s.right+1)+ "Columna "+s.left+". Identificador " + s.value + " no reconocido.");
+}
+:}
+terminal test,tCmovs,tmovs,Ollave,Cllave,Ocorch,Ccorch,tpunts,tcom,tnumero,tlnombre;
+non terminal INICIA,A,B,C,D,E,F;
+start with INICIA;
+INICIA::= A;
+A::= Ollave B Cllave;
+B::= test tpunts C;
+C::=Ollave E Cllave tcom C
+|Ollave E Cllave;
+E::= tlnombre:a tpunts Ollave D Cllave{:est.nombre=a.toString();:} ;
+D::= tmovs tpunts Ocorch tCmovs:b Ccorch{:movis=b.toString();:} F;
+F::={:est=new proyecto1_compi1.Estrategias(movis);proyecto1_compi1.Main.estrats.add(est);:};

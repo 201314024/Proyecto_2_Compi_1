@@ -1,0 +1,25 @@
+package Parsers;
+import java_cup.runtime.*;
+parser code
+{:
+/**Metodo al que se llama automáticamente ante algún error sintactico.*/
+public static String pos="";
+public static String cadena="";
+public void syntax_error(Symbol s){
+System.out.println("Error en la Línea " + (s.right+1) +" Columna " +s.left+ ". Identificador " +s.value + " no reconocido." );
+}
+/**Metodo al que se llama en el momento en que ya no es posible una recuperación de errores.*/
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+System.out.println("Error en la Línea " + (s.right+1)+ "Columna "+s.left+". Identificador " + s.value + " no reconocido.");
+}
+:}
+terminal tfunc,Ollave,Cllave,Oparen,Cparen,tpunts,tcom,tlnumero,tlnombre;
+non terminal INICIA,A,B,C;
+start with INICIA;
+INICIA::= A;
+A::= tlnumero:b tpunts Ollave Oparen B Cparen Cllave tcom A {:pos=pos+b.toString()+",";:}
+| tlnumero:b tpunts Ollave Oparen B Cparen Cllave{:pos=pos+b.toString()+",";:};
+B::= tcom B {:cadena=cadena+" - ";:}
+| tfunc:a B{:cadena=cadena+a.toString();:}
+| {:cadena=cadena+";";:};
+

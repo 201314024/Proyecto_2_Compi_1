@@ -1,0 +1,24 @@
+package Parsers;
+import java_cup.runtime.*;
+parser code
+{:
+/**Metodo al que se llama automáticamente ante algún error sintactico.*/
+
+public void syntax_error(Symbol s){
+System.out.println("Error en la Linea " + (s.right+1) +" Columna " +s.left+ ". Identificador " +s.value + " no reconocido." );
+}
+/**Metodo al que se llama en el momento en que ya no es posible una recuperación de errores.*/
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+System.out.println("Error en la Línea " + (s.right+1)+ " Columna "+s.left+". Identificador " + s.value + " no reconocido.");
+}
+:}
+terminal Tproy,Tpath,Tfecha,tlpath,tcnombre,Ollave,Cllave,Ocorch,Ccorch,tpunts,tpuntycom,tnumero,tlnombre,tnomb,tlfecha;
+non terminal INICIA,A,B;
+start with INICIA;
+INICIA::= A;
+A::=Tproy Ocorch B Ccorch
+|Tproy Ollave B Cllave;
+B::=Tpath tpunts tlpath:a tpuntycom B{:proyecto.pkg2.compi1.Editor.addpath(a.toString());:}
+|tnomb tpunts tcnombre:b tpuntycom B{:proyecto.pkg2.compi1.Editor.addnom(b.toString());:}
+|Tfecha tpunts tlfecha:c tpuntycom B{:proyecto.pkg2.compi1.Editor.fecha=c.toString();:}
+|{://no pos nada:};

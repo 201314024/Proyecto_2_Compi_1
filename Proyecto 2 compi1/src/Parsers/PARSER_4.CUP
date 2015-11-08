@@ -1,0 +1,48 @@
+package Parsers;
+import java_cup.runtime.*;
+parser code
+{:
+/**Metodo al que se llama automáticamente ante algún error sintactico.*/
+public static proyecto.pkg2.compi1.Funcion f= new Funcion();
+public static proyecto.pkg2.compi1.variable v= new variable();
+public static String cadena="";
+public void syntax_error(Symbol s){
+System.out.println("Error en la Línea " + (s.right+1) +" Columna " +s.left+ ". Identificador " +s.value + " no reconocido." );
+}
+/**Metodo al que se llama en el momento en que ya no es posible una recuperación de errores.*/
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+System.out.println("Error en la Línea " + (s.right+1)+ "Columna "+s.left+". Identificador " + s.value + " no reconocido.");
+}
+:}
+terminal tpuntycom,tcoment,Ollave,Cllave,OCorch,CCorch,Oparen,Cparen,tpunts,tcom,tmas,tmen,tpor,tdiv,tmay,tmeno,tigual,tiguala,tnumero,tlnombre,tfunc,tret,tif,twhile,tfor,tnew,tentero;
+non terminal INICIA,A,B,C,D,E,E2,F;
+start with INICIA;
+INICIA::= A;
+A::= tfunc OCorch B CCorch;
+B::= tlnombre:a Oparen C Cparen Ollave D Cllave{:f.nombre=a.toString();:};
+C::= tlnombre:b tcom C{:f.param++;v.nombre=b.toString();v.funcion=f.nombre;proyecto.pkg2.compi1.Editor.variables.add(v);v=new variable();:}
+| tlnombre:b {:f.param++;v.nombre=b.toString();v.funcion=f.nombre;proyecto.pkg2.compi1.Editor.variables.add(v);v=new variable();proyecto.pkg2.compi1.Editor.funciones.add(f);f=new Funcion();:};
+D::= tif Oparen E Cparen Ollave D Cllave D
+| twhile Oparen E Cparen Ollave D Cllave D
+| tcoment
+| tfor Oparen E2 Cparen Ollave D Cllave D
+| tlnombre:a tigual tnew tentero {:proyecto.pkg2.compi1.variable var= new variable(); var.nombre=a.toString(); proyecto.pkg2.compi1.Editor.variables.add(var);:}
+| tlnombre:a tigual tnumero:b{:proyecto.pkg2.compi1.Editor.add_val(a.toString(),Integer.parseInt(b.toString())):} 
+|F
+|;
+E::= tlnombre E
+| tnumero E
+| tmay E
+| tmeno E
+| tiguala E
+|;
+E2::= tlnombre:a tigual tnumero:b tpuntycom E {:proyecto.pkg2.compi1.variable var= new variable(); var.nombre=a.toString();var.valor=Integer.parseInt(b.toString()); proyecto.pkg2.compi1.Editor.variables.add(var);:};
+F::= tlnombre F
+| tnumero F
+| tmas F
+| tmen F
+| tpor F
+| tdiv F
+| tigual F
+| ;
+

@@ -1,0 +1,84 @@
+package Parsers;
+import java_cup.runtime.*;
+parser code
+{:
+/**Metodo al que se llama automáticamente ante algún error sintactico.*/
+public static String columna="";
+public static String cadena="";
+public void syntax_error(Symbol s){
+System.out.println("Error en la Línea " + (s.right+1) +" Columna " +s.left+ ". Identificador " +s.value + " no reconocido." );
+}
+/**Metodo al que se llama en el momento en que ya no es posible una recuperación de errores.*/
+public void unrecovered_syntax_error(Symbol s) throws java.lang.Exception{
+System.out.println("Error en la Línea " + (s.right+1)+ "Columna "+s.left+". Identificador " + s.value + " no reconocido.");
+}
+:}
+terminal tcolum,tletra,Ollave,Cllave,Ocorch,Ccorch,tcom,tnumero,tlnombre,tpunts,tcasi;
+non terminal INICIA,A,B;
+start with INICIA;
+INICIA::= A;
+A::=tcolum tletra:a tpunts Ollave B Cllave tcom A {:
+switch(a.toString())
+         {
+             case "A":columna=columna+"0,";break;
+             case "B":columna=columna+"1,";break;
+             case "C":columna=columna+"2,";break;
+             case "D":columna=columna+"3,";break;
+             case "E":columna=columna+"4,";break;
+             case "F":columna=columna+"5,";break;
+             case "G":columna=columna+"6,";break;
+             case "H":columna=columna+"7,";break;
+             case "I":columna=columna+"8,";break;
+             case "J":columna=columna+"9,";break;
+             case "K":columna=columna+"10,";break;
+             case "L":columna=columna+"11,";break;
+             case "M":columna=columna+"12,";break;
+             case "N":columna=columna+"13,";break;
+             case "O":columna=columna+"14,";break;
+             case "P":columna=columna+"15,";break;
+             case "Q":columna=columna+"16,";break;
+             case "R":columna=columna+"17,";break;
+             case "S":columna=columna+"18,";break;
+             case "T":columna=columna+"19,";break;
+             case "U":columna=columna+"20,";break;
+             case "V":columna=columna+"21,";break;
+             case "W":columna=columna+"22,";break;
+             case "X":columna=columna+"23,";break;
+             case "Y":columna=columna+"24,";break;
+             case "Z":columna=columna+"25,";break;
+             
+         }:}
+|tcolum tletra:a tpunts Ollave B Cllave{:
+switch(a.toString())
+         {
+             case "A":columna=columna+"0,";break;
+             case "B":columna=columna+"1,";break;
+             case "C":columna=columna+"2,";break;
+             case "D":columna=columna+"3,";break;
+             case "E":columna=columna+"4,";break;
+             case "F":columna=columna+"5,";break;
+             case "G":columna=columna+"6,";break;
+             case "H":columna=columna+"7,";break;
+             case "I":columna=columna+"8,";break;
+             case "J":columna=columna+"9,";break;
+             case "K":columna=columna+"10,";break;
+             case "L":columna=columna+"11,";break;
+             case "M":columna=columna+"12,";break;
+             case "N":columna=columna+"13,";break;
+             case "O":columna=columna+"14,";break;
+             case "P":columna=columna+"15,";break;
+             case "Q":columna=columna+"16,";break;
+             case "R":columna=columna+"17,";break;
+             case "S":columna=columna+"18,";break;
+             case "T":columna=columna+"19,";break;
+             case "U":columna=columna+"20,";break;
+             case "V":columna=columna+"21,";break;
+             case "W":columna=columna+"22,";break;
+             case "X":columna=columna+"23,";break;
+             case "Y":columna=columna+"24,";break;
+             case "Z":columna=columna+"25,";break;
+             
+         }:};
+B::=Ocorch Ccorch B{:cadena=cadena+" ,";:}
+|Ocorch tcasi:a Ccorch B{:cadena=cadena+a.toString()+",";:}
+|{:cadena=cadena+";";:};
